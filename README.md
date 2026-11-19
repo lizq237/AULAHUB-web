@@ -4,7 +4,7 @@
 
 🌐 **[Ver aplicación web](https://aulahub-1f738.web.app/)** · 📱 **[Código de Android](https://github.com/lizq237/AULAHUBMOVIL)** · 💻 **[Código web](https://github.com/lizq237/AULAHUB-web)**
 
-> Proyecto académico colaborativo (2025). **La aplicación se encuentra publicada, pero requiere cuentas de usuario creadas previamente en Firebase Authentication. No ofrece registro público.** No se proporciona una cuenta de demostración ni se ha confirmado el acceso completo a los datos de producción.
+> Proyecto académico colaborativo (2025). **Demo web funcional:** el 19 de noviembre de 2026 se comprobaron manualmente el acceso docente, la consulta de espacios, la creación de reservas, el acceso administrativo y la aprobación o rechazo de solicitudes. Requiere cuentas existentes en Firebase Authentication; **no ofrece registro público**. El acceso para evaluación se coordina de forma privada.
 
 ## ¿Qué problema resuelve?
 
@@ -28,26 +28,37 @@ Los nombres son categorías visibles en el código; la disponibilidad real depen
 
 ## Para reclutadores: cómo evaluar AulaHub
 
-**Opción rápida (sin credenciales):**
+**[🌐 Abrir la demostración web](https://aulahub-1f738.web.app/)** · [Código Android](https://github.com/lizq237/AULAHUBMOVIL)
 
-1. Abre la [aplicación publicada](https://aulahub-1f738.web.app/) para ver la pantalla de acceso, el diseño y la presentación del producto.
-2. Revisa el [código web](https://github.com/lizq237/AULAHUB-web) y el [repositorio Android](https://github.com/lizq237/AULAHUBMOVIL).
-3. Las funciones internas (calendario, reservas e historial) **requieren una cuenta habilitada**. Actualmente no hay credenciales públicas de prueba.
+El flujo **web** se comprobó manualmente con cuentas existentes de docente y administrador en Firebase el **19 de noviembre de 2026**:
 
-**Con una cuenta de demostración autorizada y una base de prueba correctamente configurada:**
+| Comprobación | Resultado |
+| --- | --- |
+| Inicio de sesión como docente | ✅ Comprobado |
+| Consulta de aulas y horarios | ✅ Comprobado |
+| Creación de reserva | ✅ Comprobado |
+| Inicio de sesión administrativo y vista de solicitudes | ✅ Comprobado |
+| Aprobación o rechazo de reserva | ✅ Comprobado |
 
-1. Inicia sesión como **docente**.
-2. Selecciona un aula o laboratorio y revisa su calendario.
-3. Selecciona un turno, materia, grupo, fecha y horario para solicitar una reservación.
-4. Consulta el estado de la solicitud desde **Mis reservas**.
-5. Utiliza una cuenta de **administrador** para aprobar o rechazar la solicitud.
-6. Vuelve a la cuenta docente y comprueba el cambio de estado y las notificaciones registradas.
+*Estas comprobaciones corresponden a pruebas manuales de la responsable del proyecto; no constituyen una auditoría de seguridad ni garantizan la disponibilidad permanente.*
 
-> Este recorrido describe las funciones implementadas en el código; **no se ha verificado de extremo a extremo con usuarios y reglas actualmente publicados**.
+### ¿Cómo obtener acceso a la demo?
 
-### ¿Por qué no hay usuario y contraseña en el README?
+La aplicación **no permite registro público**; ya existen cuentas habilitadas en Firebase Authentication. Para probar el recorrido completo, **solicita acceso temporal a la autora por [LinkedIn](https://www.linkedin.com/in/lizeth-quiroz-urias)**. Las credenciales se proporcionan por un canal privado cuando el acceso esté autorizado.
 
-Las contraseñas de Firebase Authentication **no pueden recuperarse desde los archivos del repositorio**. Publicarlas en GitHub sería inapropiado. Para habilitar una demo se necesita acceso autorizado al proyecto Firebase y una cuenta ficticia, con permisos limitados y datos de prueba; nunca una cuenta real de docente ni de administrador.
+**No publicamos correos institucionales ni contraseñas en GitHub.** La cuenta administrativa tiene capacidad para modificar solicitudes, por lo que debe compartirse solo con personas de confianza y durante una evaluación controlada. Se recomienda usar datos ficticios y evitar modificaciones sobre reservas institucionales reales.
+
+### Recorrido de evaluación con acceso autorizado
+
+1. Abre la demo e inicia sesión con la **cuenta docente** proporcionada.
+2. Entra a **Aulas**, selecciona un laboratorio y consulta el calendario y los horarios.
+3. Elige materia, grupo, fecha y turno; registra una reserva de prueba.
+4. Abre **Mis reservas** y observa su estado.
+5. En una sesión separada, accede con la **cuenta administradora** autorizada.
+6. Abre **Solicitudes** y aprueba o rechaza la petición.
+7. Vuelve a la sesión docente y confirma la actualización del estado.
+
+**Importante:** usa únicamente reservas y datos de demostración. El uso de las cuentas actuales no implica que el entorno sea aislado ni que tenga permisos auditados. Si no se concede acceso, el reclutador puede revisar el código y la pantalla pública de inicio de sesión.
 
 ## Stack tecnológico
 
@@ -121,13 +132,15 @@ Para publicar tu propia copia necesitas permisos sobre un proyecto Firebase y Fi
 
 La configuración del proyecto utilizado en la demostración está identificada en `.firebaserc` y `public/Firebase-Config.js`. **La configuración del SDK web no equivale a credenciales administrativas.** Se requiere iniciar sesión en Firebase CLI con una cuenta de Google que tenga permisos.
 
-## Recuperar acceso al proyecto y habilitar una demo
+## Gestión de acceso y Firebase
 
-El proyecto Firebase que aparece en el código es **`aulahub-1f738`**.
+Se conservarán las **cuentas existentes** de docente y administrador que ya permiten comprobar el flujo web. No hace falta crear nuevas cuentas para actualizar esta documentación.
 
-- **Si olvidaste el correo o la contraseña de una cuenta de AulaHub:** un administrador autorizado puede ir a **Firebase Console → Authentication → Users**, encontrar al usuario y enviar un restablecimiento de contraseña, o crear una cuenta ficticia de prueba. Las contraseñas existentes no se muestran en la consola.
-- **Si no recuerdas qué cuenta de Google administra Firebase:** intenta iniciar sesión con las cuentas de Google de los integrantes del equipo y abre [Firebase Console](https://console.firebase.google.com/project/aulahub-1f738/overview). Si el proyecto pertenece a otro compañero, pídele acceso mediante **Project settings → Users and permissions**. Si no puedes identificar al propietario, usa la [guía oficial de acceso a proyectos Firebase](https://firebase.google.com/support/faq).
-- **Para pruebas de docentes/administradores:** no basta con crear el usuario en Authentication; la aplicación consulta además documentos en Firestore (por ejemplo `roles/{uid}` y `profesores/{uid}`) y, para el calendario, materias y grupos asociados al docente.
+El ID de proyecto configurado en el código es `aulahub-1f738`. La persona con permisos sobre [Firebase Console](https://console.firebase.google.com/project/aulahub-1f738/overview) puede administrar los usuarios desde **Authentication → Users** y verificar las reglas vigentes desde **Firestore Database → Rules**.
+
+Los perfiles y permisos de AulaHub también dependen de documentos de Firestore, por ejemplo `roles/{uid}` y `profesores/{uid}`, y de las materias y grupos registrados en `profesores/{uid}/salones`. La contraseña de un usuario **no se puede consultar desde Firebase Console**.
+
+Para una evaluación externa, entrega los datos de acceso **en privado**, evita otorgar privilegios administrativos más allá de lo necesario y no publiques contraseñas en commits, incidencias, capturas ni README. Aunque se mantengan las cuentas existentes por ahora, conviene renovar las contraseñas compartidas anteriormente y comprobar los permisos antes de distribuir acceso a terceros.
 
 ### Aviso importante sobre Firestore
 
@@ -142,14 +155,17 @@ allow read, write: if request.time < timestamp.date(2025, 11, 3);
 ## Estado de la demostración
 
 - [x] Interfaz web publicada en Firebase Hosting.
+- [x] Inicio de sesión docente comprobado manualmente.
+- [x] Consulta de aulas y horarios comprobada manualmente.
+- [x] Creación de reservas comprobada manualmente.
+- [x] Inicio de sesión administrativo y solicitudes comprobados manualmente.
+- [x] Aprobación y rechazo de reservas comprobados manualmente.
 - [x] Repositorios web y Android disponibles para revisión de código.
-- [ ] Cuenta ficticia de docente preparada y verificada.
-- [ ] Cuenta ficticia de administrador con permisos limitados preparada y verificada.
-- [ ] Reglas de Firestore desplegadas auditadas y probadas.
-- [ ] Recorrido web/móvil probado con datos ficticios.
-- [ ] Capturas o video de demostración añadidos.
+- [ ] Revisar y probar las **reglas de Firestore actualmente desplegadas** para asegurar acceso por rol y usuario.
+- [ ] Comprobar de nuevo el recorrido completo de la app Android.
+- [ ] Añadir capturas o un video de demostración sin información privada.
 
-Hasta que estos puntos estén validados, la URL pública sirve como **vista del acceso**, no como prueba garantizada del sistema completo.
+**Conclusión:** el flujo web de ambos roles ha sido probado manualmente y puede mostrarse a reclutadores con acceso autorizado por un canal privado. Las pruebas manuales no demuestran por sí solas que el entorno esté seguro para acceso público.
 
 ## Equipo y créditos
 
